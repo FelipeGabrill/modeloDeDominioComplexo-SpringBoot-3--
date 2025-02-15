@@ -25,3 +25,7 @@ INSERT INTO tb_resource (title, description, position, img_Uri, type, offer_id) 
 INSERT INTO tb_section (title, description, position, img_Uri, resource_id, prerequisite_id) VALUES ('Capítulo 1', 'Vamos iniciar nesse capítulo', 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJEJX2OFLWTPzUGOXyrMR4f88JyDPaf6uA2A&s', 1, null);
 INSERT INTO tb_section (title, description, position, img_Uri, resource_id, prerequisite_id) VALUES ('Capítulo 2', 'Vamos continuar nesse capítulo', 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJEJX2OFLWTPzUGOXyrMR4f88JyDPaf6uA2A&s', 1, 1);
 INSERT INTO tb_section (title, description, position, img_Uri, resource_id, prerequisite_id) VALUES ('Capítulo 3', 'Vamos finalizar nesse capítulo', 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJEJX2OFLWTPzUGOXyrMR4f88JyDPaf6uA2A&s', 1, 2);
+
+INSERT INTO tb_enrollment (user_id, offer_id, enroll_Moment, refund_Moment, available, only_Update) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2025-01-01T13:00:00Z', null, true, false);
+INSERT INTO tb_enrollment (user_id, offer_id, enroll_Moment, refund_Moment, available, only_Update) VALUES (2, 1, TIMESTAMP WITH TIME ZONE '2025-01-01T13:00:00Z', null, true, false);
+
