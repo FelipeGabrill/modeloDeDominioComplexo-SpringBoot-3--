@@ -25,7 +25,7 @@ public class Lesson {
 	private Long id;
 	
 	private String title;
-	private Integer positon;
+	private Integer position;
 	
 	@ManyToOne
 	@JoinColumn(name = "section_id")
@@ -47,7 +47,7 @@ public class Lesson {
 	public Lesson(Long id, String title, Integer positon, Section section) {
 		this.id = id;
 		this.title = title;
-		this.positon = positon;
+		this.position = positon;
 		this.section = section;
 	}
 
@@ -69,12 +69,12 @@ public class Lesson {
 		this.title = title;
 	}
 
-	public Integer getPositon() {
-		return positon;
+	public Integer getPosition() {
+		return position;
 	}
 
-	public void setPositon(Integer positon) {
-		this.positon = positon;
+	public void setPosition(Integer position) {
+		this.position = position;
 	}
 
 	public Section getSection() {
