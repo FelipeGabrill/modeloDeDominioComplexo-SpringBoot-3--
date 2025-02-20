@@ -51,8 +51,6 @@ public class Lesson {
 		this.section = section;
 	}
 
-
-
 	public Long getId() {
 		return id;
 	}
