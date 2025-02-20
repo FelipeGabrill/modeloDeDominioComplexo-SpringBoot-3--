@@ -1,6 +1,8 @@
 package com.dv.dslearn.entities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,16 +16,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_lesson")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Lesson {
+public abstract class Lesson {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String title;
 	private Integer position;
 	
@@ -31,7 +34,10 @@ public class Lesson {
 	@JoinColumn(name = "section_id")
 	private Section section;
 	
-	@ManyToMany()
+	@OneToMany(mappedBy = "lesson")
+	private List<Deliver> deliveries = new ArrayList<>();
+	
+	@ManyToMany
 	@JoinTable(name = "tb_lessons_done",
 		joinColumns = @JoinColumn(name = "lesson_id"),
 		inverseJoinColumns = {
@@ -39,15 +45,16 @@ public class Lesson {
 				@JoinColumn(name = "offer_id")
 		}
 	)
-	private Set<Enrollment> enrollmentDone = new HashSet<>();
+	private Set<Enrollment> enrollmentsDone = new HashSet<>();
 	
 	public Lesson() {
 	}
-	
-	public Lesson(Long id, String title, Integer positon, Section section) {
+
+	public Lesson(Long id, String title, Integer position, Section section) {
+		super();
 		this.id = id;
 		this.title = title;
-		this.position = positon;
+		this.position = position;
 		this.section = section;
 	}
 
@@ -83,8 +90,12 @@ public class Lesson {
 		this.section = section;
 	}
 
-	public Set<Enrollment> getEnrollmentDone() {
-		return enrollmentDone;
+	public Set<Enrollment> getEnrollmentsDone() {
+		return enrollmentsDone;
+	}
+
+	public List<Deliver> getDeliveries() {
+		return deliveries;
 	}
 
 	@Override
@@ -103,5 +114,4 @@ public class Lesson {
 		Lesson other = (Lesson) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 }
